@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Integer.MAX_VALUE;
 import static java.nio.file.Files.*;
 
 public class Starter {
@@ -161,6 +162,42 @@ public class Starter {
                         System.out.println( "В банкомате нет такой купюры" );
                     }
                     break;
+                /*case "q":
+                    System.out.println("Ячейку какого номинала выдернуть из банкомата?");
+                    Integer GetCell = scanner.nextInt();
+                    scanner.nextLine();
+                    Nominal nominalCellValue = Nominal.getNominalFromInt( GetCell );
+                    if ( nominalCellValue != null ) {
+
+                        File inputFile = new File("atm.ss");
+                        File tempFile = new File("myTempFile.txt");
+
+                        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+                        //String lineToRemove = "bbb";
+                        String lineToRemove2 = Nominal.ONE_HUNDRED.getNominal().toString();
+                        String lineToRemove3 = lineToRemove2 + ":";
+                        String qa = String.valueOf(GetCell);
+                        String qa2 = qa + ":";
+                        String currentLine;
+                        System.out.println("lineToRemove2 = " + lineToRemove2);
+                        System.out.println("lineToRemove3 = " + lineToRemove3);
+                        System.out.println("qa = " + qa);
+                        System.out.println("qa2 = " + qa2);
+                        while((currentLine = reader.readLine()) != null) {
+                            String trimmedLine = currentLine.trim();
+                            if(trimmedLine.equals(qa2)) continue;
+                            writer.write(currentLine + System.getProperty("line.separator"));
+                        }
+                        writer.close();
+                        reader.close();
+                        boolean successful = tempFile.renameTo(inputFile);
+
+                    } else {
+                        System.out.println( "В банкомате нет такой купюры" );
+                    }
+                    break;*/
                 default:
                     System.out.println( "Incorrect command" );
             }
