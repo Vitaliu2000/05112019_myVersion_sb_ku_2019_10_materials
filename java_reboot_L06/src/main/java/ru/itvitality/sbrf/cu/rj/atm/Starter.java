@@ -4,10 +4,17 @@ import ru.itvitality.sbrf.cu.rj.atm.atm.ATM;
 import ru.itvitality.sbrf.cu.rj.atm.atm.ATMService;
 import ru.itvitality.sbrf.cu.rj.atm.atm.impl.ATMImpl;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static java.nio.file.Files.*;
 
 public class Starter {
     private ATM atm;
@@ -19,17 +26,105 @@ public class Starter {
         starter.FILE_NAME = args[ 0 ];
         starter.startAtm();
 
-        starter.startClientInteraction();
+        starter.startClientInteraction("atm.ss");
     }
 
-    private void startClientInteraction() throws IOException {
+    private void startClientInteraction(String fileName) throws IOException, NoSuchFileException {
+        //Проверка на наличие файла в сисеме. Если его нет, то создает его.
+        File f = new File("atm.ss");
+        if(f.exists() && !f.isDirectory()) {
+            System.out.println("Файл 'atm.ss' присутствует");
+        } else {
+            System.out.println("Файл 'atm.ss' отсутствует. Система создает его.");
+            PrintWriter writer = new PrintWriter("atm.ss", "UTF-8");
+            writer.close();
+        }
+
+        Path path = Paths.get(fileName);
+        //считываем содержимое файла в массив байт
+        byte[] bytes = readAllBytes(path);
+        //считываем содержимое файла в список строк
+        List<String> allLines = Files.readAllLines(path, StandardCharsets.UTF_8);
+
+        System.out.println(allLines);
+
+        for (int i = 0; i < allLines.size(); i++) {
+            if (allLines.get(i).startsWith(Nominal.ONE_HUNDRED.getNominal().toString() + ":") && !allLines.get(i).endsWith(":0")){
+                String value = allLines.get(i);
+                String valueCount = value.substring(value.lastIndexOf(':') + 1);
+                //Кол-во купюр
+                int valueCountNum = Integer.parseInt(valueCount);
+                Integer valueNom = Nominal.ONE_HUNDRED.getNominal();
+                Nominal nominal = Nominal.getNominalFromInt( valueNom );
+                for (int j = 0; j < valueCountNum; j++) {
+                    nominals.add( nominal );
+                }
+                break;
+            }
+        }
+
+        for (int i = 0; i < allLines.size(); i++) {
+            if (allLines.get(i).startsWith(Nominal.TWO_HUNDREDS.getNominal().toString() + ":") && !allLines.get(i).endsWith(":0")){
+                String valueCount = allLines.get(i).substring(allLines.get(i).lastIndexOf(':') + 1);
+                Nominal nominal = Nominal.getNominalFromInt( Nominal.TWO_HUNDREDS.getNominal() );
+                for (int j = 0; j < Integer.parseInt(valueCount); j++) {
+                    nominals.add( nominal );
+                }
+                break;
+            }
+        }
+
+        for (int i = 0; i < allLines.size(); i++) {
+            if (allLines.get(i).startsWith(Nominal.FIVE_HUNDRED.getNominal().toString() + ":") && !allLines.get(i).endsWith(":0")){
+                String valueCount = allLines.get(i).substring(allLines.get(i).lastIndexOf(':') + 1);
+                Nominal nominal = Nominal.getNominalFromInt( Nominal.FIVE_HUNDRED.getNominal() );
+                for (int j = 0; j < Integer.parseInt(valueCount); j++) {
+                    nominals.add( nominal );
+                }
+                break;
+            }
+        }
+
+        for (int i = 0; i < allLines.size(); i++) {
+                    if (allLines.get(i).startsWith(Nominal.ONE_THOUSAND.getNominal().toString() + ":") && !allLines.get(i).endsWith(":0")){
+                        String valueCount = allLines.get(i).substring(allLines.get(i).lastIndexOf(':') + 1);
+                        Nominal nominal = Nominal.getNominalFromInt( Nominal.ONE_THOUSAND.getNominal() );
+                        for (int j = 0; j < Integer.parseInt(valueCount); j++) {
+                            nominals.add( nominal );
+                        }
+                        break;
+                    }
+                }
+
+        for (int i = 0; i < allLines.size(); i++) {
+                    if (allLines.get(i).startsWith(Nominal.TWO_THOUSANDS.getNominal().toString() + ":") && !allLines.get(i).endsWith(":0")){
+                        String valueCount = allLines.get(i).substring(allLines.get(i).lastIndexOf(':') + 1);
+                        Nominal nominal = Nominal.getNominalFromInt( Nominal.TWO_THOUSANDS.getNominal() );
+                        for (int j = 0; j < Integer.parseInt(valueCount); j++) {
+                            nominals.add( nominal );
+                        }
+                        break;
+                    }
+                }
+
+        for (int i = 0; i < allLines.size(); i++) {
+                    if (allLines.get(i).startsWith(Nominal.FIVE_THOUSANDS.getNominal().toString() + ":") && !allLines.get(i).endsWith(":0")){
+                        String valueCount = allLines.get(i).substring(allLines.get(i).lastIndexOf(':') + 1);
+                        Nominal nominal = Nominal.getNominalFromInt( Nominal.FIVE_THOUSANDS.getNominal() );
+                        for (int j = 0; j < Integer.parseInt(valueCount); j++) {
+                            nominals.add( nominal );
+                        }
+                        break;
+                    }
+                }
+
         System.out.println( "Hello, my dear friend. What's your name?" );
         Scanner scanner = new Scanner( System.in );
         String name = scanner.nextLine();
         System.out.println( "Hello " + name + "! What's your command? (add, get, exit)" );
         String operation = scanner.nextLine();
 
-        while ( ! operation.equalsIgnoreCase( "e" ) ) {
+        while ( ! operation.equalsIgnoreCase( "exit" ) ) {
             switch ( operation.toLowerCase() ) {
                 case "add":
                     System.out.println( "What nominal?" );
@@ -38,14 +133,8 @@ public class Starter {
                     Nominal nominal = Nominal.getNominalFromInt( value );
                     if ( nominal != null ) {
                         nominals.add( nominal );
+                        //atm.putCash( nominals );
                         System.out.println( "Success" );
-                        //Для отладки ниже
-                        /*for (int i = 0; i < nominals.size(); i++) {
-                            for (int j = 0; j < nominals.size(); j++) {
-                                System.out.println("В банкомате " + nominals.get(j).getNominal()+ " ");
-                            }
-                        }*/
-                        //Для отладки выше
                     } else {
                         System.out.println( "Was is das?" );
                     }
@@ -75,12 +164,11 @@ public class Starter {
                 default:
                     System.out.println( "Incorrect command" );
             }
-
             System.out.println( " What's your next command? (add, get, exit)" );
             operation = scanner.nextLine();
         }
+        atm.putCash( nominals );
         ( (ATMService) atm ).saveToFile( FILE_NAME );
-
     }
 
     private void startAtm() {
