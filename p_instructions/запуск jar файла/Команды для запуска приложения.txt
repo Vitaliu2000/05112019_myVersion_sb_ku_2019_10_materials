@@ -1,0 +1,6 @@
+Команды для запуска приложения:
+
+cd IdeaProjects
+cd sb_ku_2019_10_materials
+mvn package
+java -cp java_reboot_L06/target/java_reboot_L06-1.0.0-SNAPSHOT.jar ru.itvitality.sbrf.cu.rj.atm.Starter

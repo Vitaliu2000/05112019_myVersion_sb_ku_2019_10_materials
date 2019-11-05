@@ -13,8 +13,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static java.lang.Integer.MAX_VALUE;
 import static java.nio.file.Files.*;
 
 public class Starter {
@@ -24,20 +22,20 @@ public class Starter {
 
     public static void main( String args[] ) throws IOException {
         Starter starter = new Starter();
-        starter.FILE_NAME = args[ 0 ];
+        starter.FILE_NAME = "java_reboot_L06/atm.ss";
         starter.startAtm();
 
-        starter.startClientInteraction("atm.ss");
+        starter.startClientInteraction("java_reboot_L06/atm.ss");
     }
 
     private void startClientInteraction(String fileName) throws IOException, NoSuchFileException {
         //Проверка на наличие файла в сисеме. Если его нет, то создает его.
-        File f = new File("atm.ss");
+        File f = new File("java_reboot_L06/atm.ss");
         if(f.exists() && !f.isDirectory()) {
             System.out.println("Файл 'atm.ss' присутствует");
         } else {
             System.out.println("Файл 'atm.ss' отсутствует. Система создает его.");
-            PrintWriter writer = new PrintWriter("atm.ss", "UTF-8");
+            PrintWriter writer = new PrintWriter("java_reboot_L06/atm.ss", "UTF-8");
             writer.close();
         }
 

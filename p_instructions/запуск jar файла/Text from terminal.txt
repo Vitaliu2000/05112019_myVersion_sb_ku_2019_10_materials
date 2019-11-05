@@ -1,0 +1,83 @@
+Last login: Tue Nov  5 10:48:03 on ttys000
+administrator@MacBook-Pro-MacPlus ~ % ls
+Applications	Documents	IdeaProjects	Movies		Pictures
+Desktop		Downloads	Library		Music		Public
+administrator@MacBook-Pro-MacPlus ~ % cd Idea
+cd: no such file or directory: Idea
+administrator@MacBook-Pro-MacPlus ~ % cd IdeaProjects 
+administrator@MacBook-Pro-MacPlus IdeaProjects % cd sb_ku_2019_10_materials 
+administrator@MacBook-Pro-MacPlus sb_ku_2019_10_materials % mvn package
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] java_reboot_1910                                                   [pom]
+[INFO] java_reboot_L06                                                    [jar]
+[INFO] 
+[INFO] -----------------< com.sbrf.cu.java:java_reboot_1910 >------------------
+[INFO] Building java_reboot_1910 1.0.0-SNAPSHOT                           [1/2]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] ------------------< com.sbrf.cu.java:java_reboot_L06 >------------------
+[INFO] Building java_reboot_L06 1.0.0-SNAPSHOT                            [2/2]
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ java_reboot_L06 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ java_reboot_L06 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 10 source files to /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/target/classes
+[WARNING] /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/src/main/java/ru/itvitality/sbrf/cu/rj/atm/Starter.java: /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/src/main/java/ru/itvitality/sbrf/cu/rj/atm/Starter.java uses unchecked or unsafe operations.
+[WARNING] /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/src/main/java/ru/itvitality/sbrf/cu/rj/atm/Starter.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ java_reboot_L06 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ java_reboot_L06 ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.21.0:test (default-test) @ java_reboot_L06 ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running ru.itvitality.sbrf.cu.rj.atm.atm.impl.AtmImplTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s - in ru.itvitality.sbrf.cu.rj.atm.atm.impl.AtmImplTest
+[INFO] Running ru.itvitality.sbrf.cu.rj.atm.cell.impl.CellImplTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in ru.itvitality.sbrf.cu.rj.atm.cell.impl.CellImplTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ java_reboot_L06 ---
+[INFO] Building jar: /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/target/java_reboot_L06-1.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-shade-plugin:3.2.1:shade (default) @ java_reboot_L06 ---
+[INFO] Including org.apiguardian:apiguardian-api:jar:1.1.0 in the shaded jar.
+[INFO] Including org.junit.jupiter:junit-jupiter-params:jar:5.3.2 in the shaded jar.
+[INFO] Including net.sf.opencsv:opencsv:jar:2.3 in the shaded jar.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/target/java_reboot_L06-1.0.0-SNAPSHOT.jar with /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/target/java_reboot_L06-1.0.0-SNAPSHOT-shaded.jar
+[INFO] Dependency-reduced POM written at: /Users/administrator/IdeaProjects/sb_ku_2019_10_materials/java_reboot_L06/dependency-reduced-pom.xml
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for java_reboot_1910 1.0.0-SNAPSHOT:
+[INFO] 
+[INFO] java_reboot_1910 ................................... SUCCESS [  0.006 s]
+[INFO] java_reboot_L06 .................................... SUCCESS [  6.872 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.999 s
+[INFO] Finished at: 2019-11-05T11:42:52+03:00
+[INFO] ------------------------------------------------------------------------
+administrator@MacBook-Pro-MacPlus sb_ku_2019_10_materials % java -cp java_reboot_L06/target/java_reboot_L06-1.0.0-SNAPSHOT.jar ru.itvitality.sbrf.cu.rj.atm.Starter
+Файл 'atm.ss' присутствует
+[5000:0, 100:1, 1000:0, 200:0, 2000:0, 500:2]
+Hello, my dear friend. What's your name?
+
